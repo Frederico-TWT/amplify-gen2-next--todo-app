@@ -39,3 +39,9 @@ next-env.d.ts
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+
+# Ignore function-level dependencies
+amplify/**/node_modules/
+amplify/**/package-lock.json
+amplify/**/pnpm-lock.yaml
+amplify/**/yarn.lock

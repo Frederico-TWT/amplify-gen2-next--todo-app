@@ -1,12 +1,19 @@
-import { defineStorage } from "@aws-amplify/backend";
+import { defineFunction, defineStorage } from "@aws-amplify/backend";
+
+const optimizeImage = defineFunction({
+  entry: "./on-upload-optimize/index.ts",
+});
 
 export const storage = defineStorage({
+  isDefault: true,
   name: "amplify-gen2-next--todo-app",
   access: (allow) => ({
     "private/{entity_id}/*": [
-      // {entity_id} is the token that is replaced with the user identity id
       allow.entity("identity").to(["read", "write", "delete"]),
+      allow.resource(optimizeImage).to(["read", "write", "delete"]),
     ],
   }),
-  isDefault: true,
+  triggers: {
+    onUpload: optimizeImage,
+  },
 });
