@@ -1,0 +1,46 @@
+---
+description: Project rules for Amplify Gen2 + Next.js Todo App
+alwaysApply: true
+---
+
+# Cursor Rules for Amplify Gen2 + Next.js Todo App
+
+## Project Context
+This is an AWS Amplify Gen2 application built with Next.js 14, TypeScript, and React 18.
+The app uses the App Router pattern and includes authentication and data storage.
+
+## Code Style & Best Practices
+- Use TypeScript for all new files
+- Follow Next.js 14 App Router conventions
+- Use "use client" directive for client components
+- Prefer functional components with hooks
+- Use async/await for asynchronous operations
+- Follow AWS Amplify Gen2 patterns and conventions
+
+## File Structure
+- `/amplify/` - Amplify backend configuration (auth, data, storage)
+- `/app/` - Next.js App Router pages and components
+- Use absolute imports with `@/` alias when possible
+
+## AWS Amplify Guidelines
+- Use `generateClient<Schema>()` for data operations
+- Configure Amplify with `amplify_outputs.json`
+- **Always prefer Amplify React components from `@aws-amplify/ui-react`** for UI elements:
+  - Use `<Authenticator>` for authentication flows
+  - Use `useAuthenticator()` hook for auth state management
+  - Prefer Amplify UI components over custom implementations when available
+  - Import styles with `@aws-amplify/ui-react/styles.css`
+- Follow Amplify Gen2 resource definition patterns
+
+## General Instructions
+- Always check for existing patterns before creating new code
+- Maintain consistency with existing code style
+- Add proper TypeScript types
+- Handle errors appropriately
+- Write clean, readable, and maintainable code
+
+## When Making Changes
+- Update related files if schema changes are made
+- Ensure authentication is properly handled
+- Test data operations work correctly
+- Maintain type safety throughout
