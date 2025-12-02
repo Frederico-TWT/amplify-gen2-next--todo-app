@@ -20,10 +20,11 @@ import "@aws-amplify/ui-react/styles.css";
 import FileUpload, { type FileUploadRef } from "@/src/components/FileUpload";
 import TodoItem from "@/src/components/TodoItem";
 import { useRef } from "react";
+import { deleteTodoAndFile } from "@/src/utils/fileUpload";
 
 Amplify.configure(outputs);
 
-const client = generateClient<Schema>();
+export const client = generateClient<Schema>();
 
 export default function App() {
   const { user, signOut } = useAuthenticator();
@@ -52,10 +53,6 @@ export default function App() {
     if (e.key === "Enter") {
       createTodo();
     }
-  };
-
-  const deleteTodo = (id: string) => {
-    client.models.Todo.delete({ id });
   };
 
   useEffect(() => {
@@ -137,7 +134,7 @@ export default function App() {
       ) : (
         <Flex direction="column" gap="0.75rem">
           {todos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} onDelete={deleteTodo} />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </Flex>
       )}

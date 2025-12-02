@@ -4,11 +4,10 @@ import { Card, Flex, Text, Button, Icon } from "@aws-amplify/ui-react";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
 import { MdDelete } from "react-icons/md";
 import type { Schema } from "@/amplify/data/resource";
-import { getFilePath } from "../utils/fileUpload";
+import { deleteTodoAndFile, getFilePath } from "../utils/fileUpload";
 
 interface TodoItemProps {
   todo: Schema["Todo"]["type"];
-  onDelete: (id: string) => void;
 }
 
 // Type guard to ensure we have a valid string path
@@ -16,10 +15,13 @@ function isValidPath(path: unknown): path is string {
   return typeof path === "string" && path !== "";
 }
 
-export default function TodoItem({ todo, onDelete }: TodoItemProps) {
+export default function TodoItem({ todo }: TodoItemProps) {
   const fileName = todo.fileName;
   const hasImage = isValidPath(fileName);
-  console.log("fileName:", fileName);
+
+  const deleteTodo = () => {
+    deleteTodoAndFile(todo);
+  };
 
   return (
     <Card
@@ -42,7 +44,7 @@ export default function TodoItem({ todo, onDelete }: TodoItemProps) {
           <Button
             variation="link"
             size="small"
-            onClick={() => onDelete(todo.id)}
+            onClick={deleteTodo}
             className="text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors"
             ariaLabel="Delete todo"
           >
