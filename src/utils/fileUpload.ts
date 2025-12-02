@@ -1,8 +1,7 @@
 import { remove } from "aws-amplify/storage";
 import { fetchAuthSession } from "aws-amplify/auth";
 import { Schema } from "@/amplify/data/resource";
-import { client } from "@/app/page";
-
+import { client } from "@/src/utils/client";
 export interface UploadFileResult {
   path: string;
   fileName: string;

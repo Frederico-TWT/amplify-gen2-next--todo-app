@@ -21,10 +21,9 @@ import FileUpload, { type FileUploadRef } from "@/src/components/FileUpload";
 import TodoItem from "@/src/components/TodoItem";
 import { useRef } from "react";
 import { deleteTodoAndFile } from "@/src/utils/fileUpload";
+import { client } from "@/src/utils/client";
 
 Amplify.configure(outputs);
-
-export const client = generateClient<Schema>();
 
 export default function App() {
   const { user, signOut } = useAuthenticator();
